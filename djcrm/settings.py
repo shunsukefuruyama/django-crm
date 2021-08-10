@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# In our case this is djcrm folder that is in Document folder
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -25,6 +26,7 @@ SECRET_KEY = 'ei*ynn)+da)_y$%0zv3nd99vzxs*9jp9)uce^m&f5d-w%wad8&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ["mydomain.com"] in production
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'leads'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'djcrm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Manually added for telling that we have a custom User class in models.py
+AUTH_USER_MODEL = 'leads.User'
